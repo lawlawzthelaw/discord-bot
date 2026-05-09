@@ -2,6 +2,7 @@ import discord
 import os
 
 TARGET_ROLE_NAME = 'Students'
+DM_MESSAGE = 'hora de clase en un rato, confirma tu asistencia en <#1439086525660004413>'
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -32,10 +33,7 @@ async def on_message(message):
         if member.bot:
             continue
         try:
-            await member.send(
-                f'**You were notified** — {message.author.display_name} mentioned '
-                f'**@{role.name}** in #{message.channel.name}:\n\n{message.content}'
-            )
+            await member.send(DM_MESSAGE)
             sent += 1
         except discord.Forbidden:
             failed += 1
